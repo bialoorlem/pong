@@ -6,12 +6,15 @@ export default function Ball() {
   const [delta, setDelta] = useState({ x: 5, y: 5 });
   useEffect(() => {
     const handle = setTimeout(() => {
+      let dx = delta.x;
+      let dy = delta.y;
       if (pos.x + delta.x > 300 - 20 || pos.x + delta.x < 0) {
-        setDelta({ ...delta, x: -delta.x });
+        dx = -dx;
       }
       if (pos.y + delta.y > 400 - 20 || pos.y + delta.y < 0) {
-        setDelta({ ...delta, y: -delta.y });
+        dy = -dy;
       }
+      setDelta({ x: dx, y: dy });
       setPos({ x: pos.x + delta.x, y: pos.y + delta.y });
     }, 50);
     return () => clearTimeout(handle);
