@@ -1,8 +1,8 @@
 import React, { useEffect, useReducer } from "react";
 import "./styles.css";
-import Paddle from "./components/Paddle";
-import Container from "./components/Container";
-import Ball from "./components/Ball";
+import Paddle from "./components/Paddle/Paddle";
+import Container from "./components/Container/Container";
+import Ball from "./components/Ball/Ball";
 
 const initialState = {
   p1Paddle: {
