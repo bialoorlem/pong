@@ -99,6 +99,8 @@ export default function App() {
 
   return (
     <div className="container">
+
+      <Brick style={{top: 0, left:0}}/>
       <Paddle paddleX={state.paddle.x} />
       <Ball pos={state.ball} />
     </div>
