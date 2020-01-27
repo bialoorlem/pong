@@ -144,39 +144,6 @@ function willCollide(rect1, rect2) {
     {
       top: 0,
       left: 0
-    },
-
-    {
-      top: 0,
-      left: 100
-    },
-    {
-      top: 0,
-      left: 200
-    },
-    {
-      top: 50,
-      left: 0
-    },
-    {
-      top: 50,
-      left: 100
-    },
-    {
-      top: 50,
-      left: 200
-    },
-    {
-      top: 100,
-      left: 0
-    },
-    {
-      top: 75,
-      left: 100
-    },
-    {
-      top: 100,
-      left: 200
     }
   ];
 
