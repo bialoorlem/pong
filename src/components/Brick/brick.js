@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Brick(){
+export default function Brick({style}){
 
     return (
         <div
@@ -10,7 +10,7 @@ export default function Brick(){
         height: "25px",
         background: "lime",
         borderRadius: "4px",
-        // ...style
+        ...style
         }}
         />
     )
