@@ -3,14 +3,14 @@ import React from "react";
 export default function Brick(){
 
     return (
-        <Div
+        <div
         style={{
         position: "absolute",
         width: "100px",
         height: "25px",
-        background: "salmon",
+        background: "lime",
         borderRadius: "4px",
-        ...style
+        // ...style
         }}
         />
     )

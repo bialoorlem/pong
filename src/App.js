@@ -3,6 +3,7 @@ import "./styles.css";
 import Paddle from "./components/Paddle/Paddle";
 import Container from "./components/Container/Container";
 import Ball from "./components/Ball/Ball";
+import Brick from "./components/Brick/Brick";
 
 const initialState = {
   paddle: {
@@ -51,56 +52,70 @@ export default function App() {
     window.addEventListener("mousemove", handleMouse);
   }, []);
 
-  useEffect(() => {
-    const handle = setTimeout(() => {
-      let x = state.ball.x;
-      let y = state.ball.y;
-      let dx = state.ball.dx;
-      let dy = state.ball.dy;
+  useEffect(
+    () => {
+      const handle = setTimeout(() => {
+        let x = state.ball.x;
+        let y = state.ball.y;
+        let dx = state.ball.dx;
+        let dy = state.ball.dy;
 
-      let paddleX = state.paddle.x;
+        let paddleX = state.paddle.x;
 
-      if (y > 370) {
+        if (y > 370) {
+          return dispatch({
+            type: "MOVE_BALL",
+            payload: {
+              dx: 5,
+              dy: 5,
+              x: 0,
+              y: 0
+            }
+          });
+        }
+
+        if (x + dx > 300 - 20 || x + dx < 0) {
+          dx = -dx;
+        }
+
+        if (y + dy > 400 - 20 || y + dy < 0) {
+          dy = -dy;
+        }
+
+        if (y > 340 && paddleX < x + dx && paddleX + 100 > x + dx) {
+          dy = -dy;
+        }
+
         return dispatch({
           type: "MOVE_BALL",
           payload: {
-            dx: 5,
-            dy: 5,
-            x: 0,
-            y: 0
+            dx,
+            dy,
+            x: x + dx,
+            y: y + dy
           }
         });
-      }
+      }, 50);
+      return () => clearTimeout(handle);
+    },
+    [state.ball]
+  );
 
-      if (x + dx > 300 - 20 || x + dx < 0) {
-        dx = -dx;
-      }
-
-      if (y + dy > 400 - 20 || y + dy < 0) {
-        dy = -dy;
-      }
-
-      if (y > 340 && paddleX < x + dx && paddleX + 100 > x + dx) {
-        dy = -dy;
-      }
-
-      return dispatch({
-        type: "MOVE_BALL",
-        payload: {
-          dx,
-          dy,
-          x: x + dx,
-          y: y + dy
-        }
-      });
-    }, 50);
-    return () => clearTimeout(handle);
-  }, [state.ball]);
+  const bricks = [
+    {
+      top: 0,
+      left: 0
+    },
+    {
+      top: 0,
+      left: 200
+    }
+  ];
 
   return (
     <div className="container">
+      <Brick style={{ top: 0, left: 0 }} />
 
-      <Brick style={{top: 0, left:0}}/>
       <Paddle paddleX={state.paddle.x} />
       <Ball pos={state.ball} />
     </div>
